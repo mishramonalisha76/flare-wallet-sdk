@@ -45,12 +45,12 @@ jest.mock('@/Asset/Assets', () => {
     return {
         getAssetDescription: jest.fn().mockImplementation((id: string) => {
             switch (id) {
-                // AVAX
+                // FLR
                 case 'U8iRqJoiJm8xZHAacmvYyZVwqQx6uDNtQeP3CQ6fcgQk3JqnK':
                     return {
                         assetID: 'U8iRqJoiJm8xZHAacmvYyZVwqQx6uDNtQeP3CQ6fcgQk3JqnK',
-                        name: 'Avalanche',
-                        symbol: 'AVAX',
+                        name: 'Flare',
+                        symbol: 'FLR',
                         denomination: 9,
                     };
                 case 'wxTqKYimwaGNsvnk7WBRq3FyattSuYfoWwrwXvHsEw7QnHhjK':
@@ -190,7 +190,7 @@ describe('Export Tx', () => {
 });
 
 describe('Base Transaction Receive', () => {
-    it('Simple receive AVAX, faucet drip', async () => {
+    it('Simple receive FLR, faucet drip', async () => {
         let data: OrteliusAvalancheTx = JSON.parse(BaseTx);
         const myAddresses = ['X-fuji1ur873jhz9qnaqv5qthk5sn3e8nj3e0kmafyxut'];
         const cAddr = '0x5f658A6d1928c39B286b48192FEA8d46D87AD077';
@@ -246,7 +246,7 @@ describe('Base Transaction Receive', () => {
 });
 
 describe('Base Transaction Send', () => {
-    it('Simple send AVAX', async () => {
+    it('Simple send FLR', async () => {
         let data: OrteliusAvalancheTx = JSON.parse(BaseTxSend0);
         const myAddresses = ['X-fuji1euwa0uxz7fcm8edj5fy490fvdj6e3s2mnmxh6p'];
         const cAddr = '0x5f658A6d1928c39B286b48192FEA8d46D87AD077';
@@ -261,7 +261,7 @@ describe('Base Transaction Send', () => {
         expect(summary.tokens[0].addresses).toEqual(['fuji1n8vmuvxudfkr7u6vy307jlyuk84nke0nr769zd']);
     });
 
-    it('Send 1000 AVAX', async () => {
+    it('Send 1000 FLR', async () => {
         let data: OrteliusAvalancheTx = JSON.parse(BaseTxSend1);
         const myAddresses = [
             'X-fuji1ysxw3923qapq43pukde9vud4wn84exyzdqletm',
@@ -307,7 +307,7 @@ describe('Base Transaction Send', () => {
 });
 
 describe('Staking TX', () => {
-    it('Add validator 100 AVAX, staking finished, not rewarded', async () => {
+    it('Add validator 100 FLR, staking finished, not rewarded', async () => {
         let data: OrteliusAvalancheTx = JSON.parse(StakeTx0);
         const myAddresses = [
             'P-fuji1ur873jhz9qnaqv5qthk5sn3e8nj3e0kmafyxut',
@@ -325,7 +325,7 @@ describe('Staking TX', () => {
         expect(summary.rewardAmountDisplayValue).toEqual(undefined);
     });
 
-    it('Add delegator 100 AVAX, uses lockedstakeable UTXOs, stake finished, rewarded', async () => {
+    it('Add delegator 100 FLR, uses lockedstakeable UTXOs, stake finished, rewarded', async () => {
         let data: OrteliusAvalancheTx = JSON.parse(StakeTx1);
         const myAddresses = [
             'P-fuji1ur873jhz9qnaqv5qthk5sn3e8nj3e0kmafyxut',
@@ -344,7 +344,7 @@ describe('Staking TX', () => {
         expect(summary.rewardAmountDisplayValue).toEqual('0.555946308');
     });
 
-    it('Fee received from delegator 0.000225438 AVAX', async () => {
+    it('Fee received from delegator 0.000225438 FLR', async () => {
         let data: OrteliusAvalancheTx = JSON.parse(StakeTx2);
         const myAddresses = ['P-fuji1wvtapgjhf90p6hhsnvran54u9wy7gadkvy5j3p'];
         const cAddr = '0x5f658A6d1928c39B286b48192FEA8d46D87AD077';

@@ -1,6 +1,6 @@
 import { NetworkConfig } from '@/Network/types';
 
-import { Avalanche } from 'avalanche';
+import { Avalanche } from '@flarenetwork/flarejs';
 import { HttpClient } from './http_client';
 
 export function wsUrlFromConfigX(config: NetworkConfig): string {
@@ -14,8 +14,8 @@ export function wsUrlFromConfigEVM(config: NetworkConfig): string {
 }
 
 /**
- * Given the base url of an Avalanche API, requests the Network ID
- * @param url The base url for the Avalanche API
+ * Given the base url of an Flare API, requests the Network ID
+ * @param url The base url for the Flare API
  */
 export async function getNetworkIdFromURL(url: string): Promise<number> {
     // TODO: Not be the best to assume /ext/info but Avalanchejs complicates things

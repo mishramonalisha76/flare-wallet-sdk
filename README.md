@@ -3,11 +3,11 @@
 -   This library is under development and there might be frequent breaking changes.
 -   Audit pending.
 
-# Avalanche Wallet SDK (Beta)
+# Flare Wallet SDK (Beta)
 
-Avalanche Wallet SDK is a typescript library for creating and managing decentralized wallets.
+Flare Wallet SDK is a typescript library for creating and managing decentralized wallets.
 
-It provides high level methods to transact on Avalanche's primary networks: X, P and C.
+It provides high level methods to transact on Flare's primary networks: X, P and C.
 
 Wallet types supported:
 
@@ -16,7 +16,7 @@ Wallet types supported:
 -   Mnemonic Wallets
 -   Public Mnemonic Wallets (XPUB)
 
-Using the avalanche-wallet-sdk developers can:
+Using the flare-wallet-sdk developers can:
 
 -   Receive and send tokens and NFTs.
 -   Cross chain transfer

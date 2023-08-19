@@ -1,6 +1,6 @@
 import { cChain, ethersProvider, pChain, web3, xChain } from '@/Network/network';
 
-import { BN, Buffer } from 'avalanche';
+import { BN, Buffer } from '@flarenetwork/flarejs';
 import {
     AVMConstants,
     MinterSet,
@@ -9,13 +9,13 @@ import {
     UTXO as AVMUTXO,
     UTXOSet as AVMUTXOSet,
     UTXOSet,
-} from 'avalanche/dist/apis/avm';
+} from '@flarenetwork/flarejs/dist/apis/avm';
 
-import { PayloadBase } from 'avalanche/dist/utils';
-import { OutputOwners } from 'avalanche/dist/common';
-import { PlatformVMConstants, UTXOSet as PlatformUTXOSet } from 'avalanche/dist/apis/platformvm';
+import { PayloadBase } from '@flarenetwork/flarejs/dist/utils';
+import { OutputOwners } from '@flarenetwork/flarejs/dist/common';
+import { PlatformVMConstants, UTXOSet as PlatformUTXOSet } from '@flarenetwork/flarejs/dist/apis/platformvm';
 
-import { EVMConstants } from 'avalanche/dist/apis/evm';
+import { EVMConstants } from '@flarenetwork/flarejs/dist/apis/evm';
 
 import { FeeMarketEIP1559Transaction, Transaction } from '@ethereumjs/tx';
 import EthereumjsCommon from '@ethereumjs/common';
@@ -328,9 +328,9 @@ export async function estimateErc721TransferGas(contract: string, from: string, 
 }
 
 /**
- * Estimates the gas needed to send AVAX
+ * Estimates the gas needed to send FLR
  * @param to Destination address
- * @param amount Amount of AVAX to send, given in WEI
+ * @param amount Amount of FLR to send, given in WEI
  * @param gasPrice Given in WEI
  */
 export async function estimateAvaxGas(from: string, to: string, amount: BN, gasPrice: BN): Promise<number> {

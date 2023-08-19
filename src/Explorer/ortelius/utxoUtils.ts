@@ -1,5 +1,5 @@
 import { OrteliusUTXO } from '@/Explorer';
-import { BN } from 'avalanche';
+import { BN } from '@flarenetwork/flarejs';
 import { iHistoryBaseTxTokenOwners } from '@/History';
 import { strip0x } from '@/utils';
 

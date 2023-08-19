@@ -1,6 +1,6 @@
 import { GetBalancesParams } from './models';
 import Glacier from './Glacier';
-import { BN } from 'avalanche';
+import { BN } from '@flarenetwork/flarejs';
 import { splitToParts } from './utils';
 import {
     ListPChainBalancesResponse,

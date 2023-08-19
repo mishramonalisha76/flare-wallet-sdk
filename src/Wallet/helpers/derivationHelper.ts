@@ -1,7 +1,7 @@
 import { AVAX_TOKEN_PATH, ETH_ACCOUNT_PATH } from '@/Wallet/constants';
 
 /**
- * Given an account number, returns the Avalanche account derivation path as a string
+ * Given an account number, returns the Flare account derivation path as a string
  * @param accountIndex
  */
 export function getAccountPathAvalanche(accountIndex: number) {

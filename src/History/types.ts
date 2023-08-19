@@ -1,4 +1,4 @@
-import { BN } from 'avalanche';
+import { BN } from '@flarenetwork/flarejs';
 import { ChainIdType } from '@/common';
 import { iAssetDescriptionClean } from '@/Asset/types';
 import { OrteliusAvalancheTx, OrteliusEvmTx } from '@/Explorer';

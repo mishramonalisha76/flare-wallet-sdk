@@ -1,4 +1,4 @@
-import { BN } from 'avalanche';
+import { BN } from '@flarenetwork/flarejs';
 import Big from 'big.js';
 
 declare module 'big.js' {
@@ -41,7 +41,7 @@ export function bnToBig(val: BN, denomination = 0): Big {
 
 /**
  * Converts a BN amount of 18 decimals to 9.
- * Used for AVAX C <-> X,P conversions
+ * Used for FLR C <-> X,P conversions
  * @param amount
  */
 export function avaxCtoX(amount: BN) {

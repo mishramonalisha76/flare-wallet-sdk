@@ -27,7 +27,7 @@ import {
     estimateAvaxGas,
     estimateErc20Gas,
 } from '@/helpers/tx_helper';
-import { BN, Buffer } from 'avalanche';
+import { BN, Buffer } from '@flarenetwork/flarejs';
 import { FeeMarketEIP1559Transaction, Transaction } from '@ethereumjs/tx';
 import { activeNetwork, avalanche, cChain, pChain, web3, xChain } from '@/Network/network';
 import { EvmWallet } from '@/Wallet/EVM/EvmWallet';
@@ -48,7 +48,7 @@ import {
     Tx as AvmTx,
     AVMConstants,
     AmountOutput,
-} from 'avalanche/dist/apis/avm';
+} from '@flarenetwork/flarejs/dist/apis/avm';
 import {
     UTXOSet as PlatformUTXOSet,
     UTXO as PlatformUTXO,
@@ -56,10 +56,10 @@ import {
     Tx as PlatformTx,
     PlatformVMConstants,
     StakeableLockOut,
-} from 'avalanche/dist/apis/platformvm';
-import { UnsignedTx as EVMUnsignedTx, Tx as EVMTx, UTXOSet as EVMUTXOSet } from 'avalanche/dist/apis/evm';
+} from '@flarenetwork/flarejs/dist/apis/platformvm';
+import { UnsignedTx as EVMUnsignedTx, Tx as EVMTx, UTXOSet as EVMUTXOSet } from '@flarenetwork/flarejs/dist/apis/evm';
 
-import { PayloadBase, UnixNow } from 'avalanche/dist/utils';
+import { PayloadBase, UnixNow } from '@flarenetwork/flarejs/dist/utils';
 import { getAssetDescription } from '@/Asset/Assets';
 import { getErc20Token } from '@/Asset/Erc20';
 import { NO_NETWORK } from '@/errors';
@@ -84,7 +84,7 @@ import {
     UniversalTx,
 } from '@/UniversalTx';
 import { UniversalNodeAbstract } from '@/UniversalTx/UniversalNode';
-import { GetStakeResponse } from 'avalanche/dist/apis/platformvm/interfaces';
+import { GetStakeResponse } from '@flarenetwork/flarejs/dist/apis/platformvm/interfaces';
 import { networkEvents } from '@/Network/eventEmitter';
 import { NetworkConfig } from '@/Network';
 import { chainIdFromAlias } from '@/Network/helpers/idFromAlias';
@@ -231,7 +231,7 @@ export abstract class WalletProvider {
     /**
      *
      * @param to - the address funds are being send to.
-     * @param amount - amount of AVAX to send in nAVAX
+     * @param amount - amount of FLR to send in nAVAX
      * @param memo - A MEMO for the transaction
      */
     async sendAvaxX(to: string, amount: BN, memo?: string): Promise<string> {
@@ -263,9 +263,9 @@ export abstract class WalletProvider {
     }
 
     /**
-     * Sends AVAX to another address on the C chain using legacy transaction format.
-     * @param to Hex address to send AVAX to.
-     * @param amount Amount of AVAX to send, represented in WEI format.
+     * Sends FLR to another address on the C chain using legacy transaction format.
+     * @param to Hex address to send FLR to.
+     * @param amount Amount of FLR to send, represented in WEI format.
      * @param gasPrice Gas price in WEI format
      * @param gasLimit Gas limit
      *
@@ -280,7 +280,7 @@ export abstract class WalletProvider {
     }
 
     /**
-     * Send Avalanche Native Tokens on X chain
+     * Send Flare Native Tokens on X chain
      * @param assetID ID of the token to send
      * @param amount How many units of the token to send. Based on smallest divisible unit.
      * @param to X chain address to send tokens to
@@ -378,9 +378,9 @@ export abstract class WalletProvider {
     }
 
     /**
-     * Estimate the gas needed for a AVAX send transaction on the C chain.
+     * Estimate the gas needed for a FLR send transaction on the C chain.
      * @param to Destination address.
-     * @param amount Amount of AVAX to send, in WEI.
+     * @param amount Amount of FLR to send, in WEI.
      */
     async estimateAvaxGasLimit(to: string, amount: BN, gasPrice: BN): Promise<number> {
         let from = this.getAddressC();
@@ -403,7 +403,7 @@ export abstract class WalletProvider {
     }
 
     /**
-     * Returns the maximum spendable AVAX balance for the given chain.
+     * Returns the maximum spendable FLR balance for the given chain.
      * Scans all chains and take cross over fees into account
      * @param chainType X, P or C
      */
@@ -437,7 +437,7 @@ export abstract class WalletProvider {
      * @param amount The amount to check against
      */
     public canHaveBalanceOnChain(chain: ChainIdType, amount: BN, atomicFeeXP: BN, atomicFeeC: BN): boolean {
-        // The maximum amount of AVAX we can have on this chain
+        // The maximum amount of FLR we can have on this chain
         let maxAmt = this.createUniversalNode(chain, atomicFeeXP, atomicFeeC).reduceTotalBalanceFromParents();
         return maxAmt.gte(amount);
     }
@@ -475,7 +475,7 @@ export abstract class WalletProvider {
     }
 
     /**
-     * Returns the C chain AVAX balance of the wallet in WEI format.
+     * Returns the C chain FLR balance of the wallet in WEI format.
      */
     async updateAvaxBalanceC(): Promise<BN> {
         let balOld = this.evmWallet.getBalance();
@@ -533,7 +533,7 @@ export abstract class WalletProvider {
     }
 
     /**
-     * Returns the number AVAX staked by this wallet.
+     * Returns the number FLR staked by this wallet.
      */
     public async getStake(): Promise<GetStakeResponse> {
         let addrs = await this.getAllAddressesP();
@@ -636,7 +636,7 @@ export abstract class WalletProvider {
             res[assetId] = asset;
         }
 
-        // If there are no AVAX UTXOs create a dummy empty balance object
+        // If there are no FLR UTXOs create a dummy empty balance object
         let avaxID = activeNetwork.avaxID;
         if (!res[avaxID]) {
             let assetInfo = await getAssetDescription(avaxID);
@@ -660,7 +660,7 @@ export abstract class WalletProvider {
     }
 
     /**
-     * A helpful method that returns the AVAX balance on X, P, C chains.
+     * A helpful method that returns the FLR balance on X, P, C chains.
      * Internally calls chain specific getAvaxBalance methods.
      */
     public getAvaxBalance(): iAvaxBalance {
@@ -676,7 +676,7 @@ export abstract class WalletProvider {
     }
 
     /**
-     * Returns the X chain AVAX balance of the current wallet state.
+     * Returns the X chain FLR balance of the current wallet state.
      * - Does not make a network request.
      * - Does not refresh wallet balance.
      */
@@ -697,7 +697,7 @@ export abstract class WalletProvider {
     }
 
     /**
-     * Returns the P chain AVAX balance of the current wallet state.
+     * Returns the P chain FLR balance of the current wallet state.
      * - Does not make a network request.
      * - Does not refresh wallet balance.
      */
@@ -747,7 +747,7 @@ export abstract class WalletProvider {
     }
 
     /**
-     * Exports AVAX from P chain to X chain
+     * Exports FLR from P chain to X chain
      * @remarks
      * The export fee is added automatically to the amount. Make sure the exported amount includes the import fee for the destination chain.
      *
@@ -797,7 +797,7 @@ export abstract class WalletProvider {
     }
 
     /**
-     * Exports AVAX from C chain to X chain
+     * Exports FLR from C chain to X chain
      * @remarks
      * Make sure the exported `amt` includes the import fee for the destination chain.
      *
@@ -840,7 +840,7 @@ export abstract class WalletProvider {
     }
 
     /**
-     * Exports AVAX from X chain to either P or C chain
+     * Exports FLR from X chain to either P or C chain
      * @remarks
      * The export fee will be added to the amount automatically. Make sure the exported amount has the import fee for the destination chain.
      *
@@ -1099,7 +1099,7 @@ export abstract class WalletProvider {
      * Adds a validator to the network using the given node id.
      *
      * @param nodeID The node id you are adding as a validator
-     * @param amt Amount of AVAX to stake in nAVAX
+     * @param amt Amount of FLR to stake in nAVAX
      * @param start Validation period start date
      * @param end Validation period end date
      * @param delegationFee Minimum 2%

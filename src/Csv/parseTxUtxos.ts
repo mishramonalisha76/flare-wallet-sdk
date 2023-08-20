@@ -4,7 +4,7 @@ import { activeNetwork, idToChainAlias } from '@/Network';
 import { isOutputOwner } from '@/Explorer/ortelius/utxoUtils';
 import { createCSVContent } from '@/Csv/createCsvContent';
 import { bnToBig } from '@/utils';
-import { BN } from 'avalanche';
+import { BN } from '@flarenetwork/flarejs';
 
 interface ParsedTxUtxos {
     txID: string;
@@ -57,7 +57,7 @@ export function parseTxUtxos(txs: OrteliusAvalancheTx[], ownedAddresses: string[
                 owners: txIn.output.addresses || txIn.output.caddresses || [],
                 locktime: txIn.output.locktime,
                 threshold: txIn.output.threshold,
-                assetID: isAVAX ? 'AVAX' : txIn.output.assetID,
+                assetID: isAVAX ? 'FLR' : txIn.output.assetID,
             });
         });
 
@@ -77,7 +77,7 @@ export function parseTxUtxos(txs: OrteliusAvalancheTx[], ownedAddresses: string[
                 owners: txOut.addresses || txOut.caddresses || [],
                 locktime: txOut.locktime,
                 threshold: txOut.threshold,
-                assetID: isAVAX ? 'AVAX' : txOut.assetID,
+                assetID: isAVAX ? 'FLR' : txOut.assetID,
             });
         });
     });

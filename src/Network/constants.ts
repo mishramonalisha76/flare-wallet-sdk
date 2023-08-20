@@ -1,15 +1,15 @@
 import { NetworkConfig } from './types';
-import { Defaults } from 'avalanche/dist/utils';
+import { Defaults } from '@flarenetwork/flarejs/dist/utils';
 import { getRpcC, getRpcP, getRpcX } from './helpers/rpcFromConfig';
 
 export const MainnetConfig: NetworkConfig = {
-    rawUrl: 'https://api.avax.network',
+    rawUrl: 'https://flare-api.flare.network/ext/C/rpc',
     apiProtocol: 'https',
-    apiIp: 'api.avax.network',
+    apiIp: 'flare-api.flare.network',
     apiPort: 443,
-    explorerURL: 'https://explorerapi.avax.network',
-    explorerSiteURL: 'https://explorer.avax.network',
-    networkID: 1,
+    explorerURL: 'https://flare-explorer.flare.network',
+    explorerSiteURL: '',
+    networkID: 14,
     // @ts-ignore
     xChainID: Defaults.network[1]['X']['blockchainID'],
     // @ts-ignore
@@ -30,13 +30,13 @@ export const MainnetConfig: NetworkConfig = {
 };
 
 export const TestnetConfig: NetworkConfig = {
-    rawUrl: 'https://api.avax-test.network',
+    rawUrl: 'https://costone.flare.network/ext/bc/C/rpc',
     apiProtocol: 'https',
-    apiIp: 'api.avax-test.network',
+    apiIp: 'costone.flare.network',
     apiPort: 443,
-    explorerURL: 'https://explorerapi.avax-test.network',
-    explorerSiteURL: 'https://explorer.avax-test.network',
-    networkID: 5,
+    explorerURL: 'https://coston-explorer.flare.network/',
+    explorerSiteURL: '',
+    networkID: 1,
     // @ts-ignore
     xChainID: Defaults.network[5]['X']['blockchainID'],
     // @ts-ignore

@@ -1,4 +1,4 @@
-import { BinTools } from 'avalanche';
+import { BinTools } from '@flarenetwork/flarejs';
 
 export const bintools = BinTools.getInstance();
 

@@ -1,5 +1,5 @@
 import * as Utils from '@/utils';
-import { BN } from 'avalanche';
+import { BN } from '@flarenetwork/flarejs';
 
 describe('stringToBN', () => {
     it('no decimals', () => {
@@ -39,12 +39,12 @@ describe('stringToBN', () => {
         expect(val).toEqual(new BN(112));
     });
 
-    it('Million AVAX 9 decimals', () => {
+    it('Million FLR 9 decimals', () => {
         let val = Utils.stringToBN('360123900', 9);
         expect(val).toEqual(new BN('360123900000000000'));
     });
 
-    it('Million AVAX 18 decimals', () => {
+    it('Million FLR 18 decimals', () => {
         let val = Utils.stringToBN('360123900', 18);
         expect(val).toEqual(new BN('360123900000000000000000000'));
     });

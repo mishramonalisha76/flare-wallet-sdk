@@ -1,7 +1,7 @@
-import { Avalanche } from 'avalanche/dist';
-import { AVMAPI } from 'avalanche/dist/apis/avm';
-import { InfoAPI } from 'avalanche/dist/apis/info';
-import { EVMAPI } from 'avalanche/dist/apis/evm';
+import { Avalanche } from '@flarenetwork/flarejs/dist';
+import { AVMAPI } from '@flarenetwork/flarejs/dist/apis/avm';
+import { InfoAPI } from '@flarenetwork/flarejs/dist/apis/info';
+import { EVMAPI } from '@flarenetwork/flarejs/dist/apis/evm';
 import Web3 from 'web3';
 import { DefaultConfig } from './constants';
 import { NetworkConfig, NetworkConfigRpc, NetworkProtocolType } from './types';
@@ -101,7 +101,7 @@ export function setRpcNetwork(conf: NetworkConfig, credentials = true): void {
 }
 
 /**
- * Given the base url for an Avalanche API, returns a NetworkConfig object.
+ * Given the base url for an Flare API, returns a NetworkConfig object.
  * @param url A string including protocol, base domain, and ports (if any). Ex: `http://localhost:9650`
  */
 export async function getConfigFromUrl(url: string): Promise<NetworkConfig> {

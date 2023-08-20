@@ -1,5 +1,5 @@
 import { OrteliusAvalancheTx } from '@/Explorer';
-import { BN } from 'avalanche';
+import { BN } from '@flarenetwork/flarejs';
 import { getOutputTotals } from '@/Explorer/ortelius/utxoUtils';
 
 /**

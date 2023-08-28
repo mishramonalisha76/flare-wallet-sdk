@@ -3,7 +3,7 @@ import { Defaults } from '@flarenetwork/flarejs/dist/utils';
 import { getRpcC, getRpcP, getRpcX } from './helpers/rpcFromConfig';
 
 export const MainnetConfig: NetworkConfig = {
-    rawUrl: 'https://flare-api.flare.network/ext/C/rpc',
+    rawUrl: 'https://flare-api.flare.network',
     apiProtocol: 'https',
     apiIp: 'flare-api.flare.network',
     apiPort: 443,
@@ -29,7 +29,7 @@ export const MainnetConfig: NetworkConfig = {
 };
 
 export const TestnetConfig: NetworkConfig = {
-    rawUrl: 'https://coston2.flare.network/ext/bc/C/rpc',
+    rawUrl: 'https://coston2.flare.network',
     apiProtocol: 'https',
     apiIp: 'coston2.flare.network',
     apiPort: 443,
